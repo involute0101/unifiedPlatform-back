@@ -26,16 +26,28 @@ public class TaskController {
     @Autowired
     TaskService taskService;
 
-    @PostMapping("/list")
+    @PostMapping("/undo")
     @UserLoginToken
-    public ResultVO list(@RequestBody @Valid PageForm pageForm, BindingResult bindingResult){
+    public ResultVO undoList(@RequestBody @Valid PageForm pageForm, BindingResult bindingResult){
         if(bindingResult.hasErrors()){
             log.error("[分页] 参数不正确， pageForm={}", pageForm);
             throw new PlatformException(ResultEnum.PARAM_ERROR);
         }
         PageRequest pageRequest = PageRequest.of(pageForm.getPage()-1, pageForm.getSize());
         System.out.println(pageRequest.getPageNumber()+":"+ pageRequest.getPageSize());
-        return ResultVOUtil.success(taskService.getTask(pageRequest));
+        return ResultVOUtil.success(taskService.getUndoTask(pageRequest));
+    }
+
+    @PostMapping("/finish")
+    @UserLoginToken
+    public ResultVO finishList(@RequestBody @Valid PageForm pageForm, BindingResult bindingResult){
+        if(bindingResult.hasErrors()){
+            log.error("[分页] 参数不正确， pageForm={}", pageForm);
+            throw new PlatformException(ResultEnum.PARAM_ERROR);
+        }
+        PageRequest pageRequest = PageRequest.of(pageForm.getPage()-1, pageForm.getSize());
+        System.out.println(pageRequest.getPageNumber()+":"+ pageRequest.getPageSize());
+        return ResultVOUtil.success(taskService.getFinishTask(pageRequest));
     }
 
     @PostMapping("/publish")

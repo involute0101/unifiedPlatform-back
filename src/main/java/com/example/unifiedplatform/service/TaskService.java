@@ -18,13 +18,22 @@ public class TaskService {
     TaskRepository taskRepository;
 
     /**
-     * 获取任务列表
+     * 获取未完成任务
      * @param pageable
      * @return
      */
-    public List<Task> getTask(Pageable pageable){
-        Page<Task> page = taskRepository.findByOrderByIdDesc(pageable);
-        System.out.println(page.getContent().size());
+    public List<Task> getUndoTask(Pageable pageable){
+        Page<Task> page = taskRepository.findByStateOrderByIdDesc("未完成", pageable);
+        return page.toList();
+    }
+
+    /**
+     * 获取已完成任务
+     * @param pageable
+     * @return
+     */
+    public List<Task> getFinishTask(Pageable pageable){
+        Page<Task> page = taskRepository.findByStateOrderByIdDesc("已完成", pageable);
         return page.toList();
     }
 

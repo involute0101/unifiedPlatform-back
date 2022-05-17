@@ -1,4 +1,8 @@
 spring:
+  servlet:
+    multipart:
+      max-file-size: 5000MB
+      max-request-size: 5000MB
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
@@ -14,8 +18,8 @@ spring:
 #    default-property-inclusion: non_null
   http:
     multipart:
-      maxFileSize: 1000Mb
-      maxRequestSize: 1000Mb
+      maxFileSize: 9000Mb
+      maxRequestSize: 9000Mb
 server:
   port: 8100
   error:
@@ -23,4 +27,4 @@ server:
     include-message: always
 
 uploadPath:
-  /usr/java/wyxyScript/image/
+  /usr/java/unifiedPlatform/files/
