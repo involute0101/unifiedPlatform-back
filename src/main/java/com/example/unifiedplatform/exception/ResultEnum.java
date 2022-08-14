@@ -11,7 +11,8 @@ public enum ResultEnum {
     PARAM_ERROR(3,"参数错误"),
     PWD_ERROR(4,"密码错误"),
     PERMISSION_FORBIDDEN(5,"权限不足"),
-    UPLOAD_FAILED(6,"上传失败");
+    UPLOAD_FAILED(6,"上传失败"),
+    FOLDER_EXIST(7,"文件夹已存在");
 
     private Integer code;
 

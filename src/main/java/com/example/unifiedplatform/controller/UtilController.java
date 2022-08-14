@@ -33,7 +33,7 @@ public class UtilController {
             String fileRandomFix = RandomUtil.newCaptcha(6)+ "_" + new Date().getTime()/10000000 + "_"+originalFilename;
             File dest = new File(uploadFilePath + fileRandomFix);
             file.transferTo(dest);
-            return ResultVOUtil.success("www.involute.cn:/files/"+fileRandomFix);
+            return ResultVOUtil.success("www.involute.cn:666/files/"+fileRandomFix);
         } catch (IOException e) {
             return ResultVOUtil.error(ResultEnum.UPLOAD_FAILED);
         }
